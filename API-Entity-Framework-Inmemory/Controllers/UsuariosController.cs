@@ -46,7 +46,7 @@ namespace API_Entity_Framework_Inmemory.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
         {
-            if (id != usuario.codigoDePessoa)
+            if (id != usuario.id)
             {
                 return BadRequest();
             }
@@ -80,7 +80,8 @@ namespace API_Entity_Framework_Inmemory.Controllers
             _context.DbSet.Add(usuario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsuario", new { id = usuario.codigoDePessoa }, usuario);
+            //return CreatedAtAction("GetUsuario", new { id = usuario.id }, usuario);
+            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.id }, usuario);
         }
 
         // DELETE: api/Usuarios/5
@@ -101,7 +102,7 @@ namespace API_Entity_Framework_Inmemory.Controllers
 
         private bool UsuarioExists(int id)
         {
-            return _context.DbSet.Any(e => e.codigoDePessoa == id);
+            return _context.DbSet.Any(e => e.id == id);
         }
     }
 }
