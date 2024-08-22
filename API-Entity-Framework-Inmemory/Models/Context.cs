@@ -8,6 +8,6 @@ namespace API_Entity_Framework_Inmemory.Models
         public Context(DbContextOptions<Context> options) : base(options)
         {
         }
-        public DbSet<Context> DbSet { get; set; } = null;
+        public DbSet<Usuario> DbSet { get; set; } = null;
     }
 }
